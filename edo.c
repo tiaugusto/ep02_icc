@@ -73,7 +73,6 @@ void prnEDOsl (EDo *edoeq)
     else if (i == n-1)
       b -= edoeq->yb * (1 + h*edoeq->p/2.0);
 
-    printf (" | ");
     printf (FORMAT, b);
       
     printf ("\n");

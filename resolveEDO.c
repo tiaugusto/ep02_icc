@@ -7,7 +7,10 @@
 #include <likwid.h>
 
 int main() {
+    LIKWID_MARKER_INIT;
+
     EDo edo;
+    int eqCount = 0; // contador de EDOs processadas
     // 1ª linha: n
     if (scanf("%d", &edo.n) != 1) return 0;
     // 2ª linha: a b
@@ -28,11 +31,19 @@ int main() {
         prnEDOsl(&edo);
 
         // Fatoração LU (inplace)
+        char *luMark = markerName("LU", eqCount);
+        LIKWID_MARKER_START(luMark);
         factorLU(sl);
+        LIKWID_MARKER_STOP(luMark);
+        free(luMark)
 
-        // Mede tempo de resolução
+        // Resolve sistema e mede tempo de solução
+        char *solMark = markerName("SOL", eqCount);
         rtime_t t0 = timestamp();
+        LIKWID_MARKER_START(solMark);
         real_t *sol = solveTridiag(sl);
+        LIKWID_MARKER_STOP(solMark);
+        free(solMark)
 
         // Imprime vetor solução
         for (int i = 0; i < sl->n; ++i) {
@@ -45,10 +56,13 @@ int main() {
         printf("%.8e\n", t_elapsed);
 
         // Limpeza
-        //free(sol);
-        //freeTridiag(sl);
+        free(sol);
+        freeTridiag(sl);
 
         printf("\n");
+        eqCount++;
     }
+
+    LIKWID_MARKER_CLOSE;
     return 0;
 }
