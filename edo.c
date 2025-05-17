@@ -1,3 +1,5 @@
+// Tiago Augusto Fiatte Prestes - GRR20232334
+
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
@@ -92,13 +94,13 @@ void freeTridiag(Tridiag *sl) {
 void factorLU(Tridiag *sl) {
     int n = sl->n;
     for (int i = 1; i < n; ++i) {
-        sl->Di[i] /= sl->D[i-1];                     // multiplicador L[i][i-1]
-        sl->D[i]   -= sl->Di[i] * sl->Ds[i-1];      // atualização de U[i][i]
+        sl->Di[i] /= sl->D[i-1];// multiplicador L[i][i-1]
+        sl->D[i] -= sl->Di[i] * sl->Ds[i-1];// atualização de U[i][i]
     }
 }
 
 // Resolve Ly = B (forward) e Ux = y (backward).
-// Retorna um vetor x alocado dinamicamente.  Possível erro: erro de alocação de um dos vetores x ou y.
+// Retorna um vetor x alocado dinamicamente. Possível erro: erro de alocação de um dos vetores x ou y.
 real_t *solveTridiag(Tridiag *sl) {
     int n = sl->n;
     real_t *y = malloc(n * sizeof(real_t));

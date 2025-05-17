@@ -1,0 +1,13 @@
+LEIAME — EP02 - Sistemas Lineares
+
+Nome: Tiago Augusto Fiatte Prestes  
+GRR: 20232334  
+
+Descrição:
+Este trabalho implementa a resolução de uma família de EDOs por meio de fatoração LU tridiagonal, com contagem separada de FLOPs para as fases L, U e solução, utilizando a biblioteca LIKWID.
+
+Limitações e observações:
+
+- Apesar da flag `-m` estar corretamente incluída no comando de execução com LIKWID, o aviso  
+  `Running without Marker API. Activate Marker API with -m on commandline.`  
+  ainda aparece.

@@ -31,7 +31,7 @@ int main() {
         // Imprime matriz aumentada
         prnEDOsl(&edo);
 
-        // Fatoração LU (inplace)
+        // Fatoração LU
         char *luMark = markerName("LU", eqCount);
         LIKWID_MARKER_START(luMark);
         factorLU(sl);
